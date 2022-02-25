@@ -49,4 +49,5 @@ exports.addCity = (data, callback) => {
             return callback(null, result);
         }
     })
+
 }
