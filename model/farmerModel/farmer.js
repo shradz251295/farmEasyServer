@@ -46,6 +46,7 @@ function farmer_model() {
 
 farmer_model.prototype.save = ((data, callback) => {
     farmer.findOne({ "emailId": data.username }, (err, result) => {
+        console.log(result)
         if (err) {
             callback(err);
         } else {

@@ -1,6 +1,7 @@
 const farmer = require('../../model/farmerModel/farmer');
 
 exports.register = (data, callback) => {
+    console.log(data);
     farmer.save(data, (err, result) => {
         if (err) {
             callback(err);
