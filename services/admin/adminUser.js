@@ -1,5 +1,7 @@
 const admin_user = require('../../model/adminModel/adminUser');
-const admin_general_setting = require('../../model/adminModel/stateCities')
+const admin_general_setting = require('../../model/adminModel/stateCities');
+const admin_farmer_setting = require('../../model/adminModel/farmerKit');
+
 exports.login = (data, callback) => {
     admin_user.find(data, (err, result) => {
         if (err) {
@@ -31,7 +33,6 @@ exports.getAdminList = (data, callback) => {
 }
 
 exports.addState = (data, callback) => {
-    console.log("daaaa", data)
     admin_general_setting.addState(data, (err, result) => {
         if (err) {
             callback(err);
@@ -50,4 +51,24 @@ exports.addCity = (data, callback) => {
         }
     })
 
+}
+
+exports.addFarmerKit = (data, image, callback) => {
+    admin_farmer_setting.addFarmerKit(data, image, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result)
+        }
+    })
+}
+
+exports.uploadKit = (data, callback) => {
+    admin_farmer_setting.uploadKit(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result)
+        }
+    })
 }

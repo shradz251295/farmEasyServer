@@ -92,3 +92,73 @@ exports.getFarmerList = (req, res) => {
 
     })
 }
+
+exports.editProfile = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    farmer_services.editProfile(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
+}
+
+
+exports.sellProduct = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    farmer_services.sellProduct(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
+}
+
+exports.getProductList = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    farmer_services.getProductList(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
+}

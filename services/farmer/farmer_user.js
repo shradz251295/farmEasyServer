@@ -1,4 +1,5 @@
 const farmer = require('../../model/farmerModel/farmer');
+const product = require('../../model/farmerModel/produce');
 
 exports.register = (data, callback) => {
     console.log(data);
@@ -31,8 +32,35 @@ exports.changePassword = (data, callback) => {
     })
 }
 
+exports.editProfile = (data, callback) => {
+    farmer.saveEditedProfile(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
 exports.getFarmerList = (data, callback) => {
     farmer.getFarmerList(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
+exports.sellProduct = (data, callback) => {
+    product.sellProduct(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
+exports.getProductList = (data, callback) => {
+    product.getProductList(data, (err, result) => {
         if (err) {
             callback(err);
         } else {

@@ -1,57 +1,52 @@
-const mongoose = require('mongoose'); //ODM(object document Mapper) framework for MongoDB
+const mongoose = require("mongoose"); //ODM(object document Mapper) framework for MongoDB
 var FarmerSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     emailId: {
         type: String,
         required: true,
         lowercase: true,
-        unique: true
+        unique: true,
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
     address: {
         type: String,
     },
     country: {
-        type: String
+        type: String,
     },
     state: {
-        type: String
+        type: String,
     },
     city: {
-        type: String
+        type: String,
     },
     pincode: {
-        type: String
+        type: String,
     },
     mobile_number: {
-        type: String
+        type: String,
     },
     alternative_mobile_number: {
-        type: String
-    }
+        type: String,
+    },
+});
 
-})
+var farmer = mongoose.model("farmerData", FarmerSchema);
 
-var farmer = mongoose.model('farmerData', FarmerSchema);
+function farmer_model() {}
 
-function farmer_model() {
-
-}
-
-farmer_model.prototype.save = ((data, callback) => {
-    farmer.findOne({ "emailId": data.username }, (err, result) => {
-        console.log(result)
+farmer_model.prototype.save = (data, callback) => {
+    farmer.findOne({ emailId: data.username }, (err, result) => {
         if (err) {
             callback(err);
         } else {
-            if (result !== null)
-                callback('Username already registered');
+            if (result !== null) callback("Username already registered");
             else {
                 const farmer_data = new farmer(data);
                 farmer_data.save((err, result) => {
@@ -60,52 +55,90 @@ farmer_model.prototype.save = ((data, callback) => {
                     } else {
                         return callback(null, result);
                     }
-
-                })
+                });
             }
         }
-
-    })
-})
-
+    });
+};
 
 farmer_model.prototype.find = (data, callback) => {
-
-    farmer.findOne({ "username": data.username }, (err, result) => {
+    farmer.findOne({ username: data.username }, (err, result) => {
         if (err) {
             callback(err);
         } else {
-            if (result !== null && (result.password == data.password)) {
+            if (result !== null && result.password == data.password) {
                 return callback(null, result);
             } else {
-                callback("password does not match")
+                callback("password does not match");
             }
         }
-    })
-}
+    });
+};
+
+farmer_model.prototype.saveEditedProfile = (data, callback) => {
+    farmer.findOneAndUpdate({ username: data.username }, {
+            $set: {
+                name: data.name,
+                username: data.emailId,
+                address: data.address,
+                country: data.country,
+                state: data.state,
+                city: data.city,
+                pincode: data.pincode,
+                mobile_number: data.mobile_number,
+                alternative_mobile_number: data.alternative_mobile_number,
+            },
+        },
+        (err, result) => {
+            if (err) {
+                callback(err);
+            } else {
+                farmer.findOne({ username: data.username }, (err, result) => {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        console.log(result);
+                        return callback(null, result);
+                    }
+                });
+            }
+        }
+    );
+};
 
 farmer_model.prototype.saveUserAfterResetPass = (data, callback) => {
-    console.log("savePassword", data);
-    farmer.findOneAndUpdate({ username: data.username }, { $set: { password: data.password } }, (err, result) => {
-        if (err) {
-            callback(err);
-        } else {
-            console.log("success", result);
-
-            return callback(null, result);
+    console.log("data", data)
+    farmer.findOneAndUpdate({ username: data.username }, { $set: { password: data.password } },
+        (err, result) => {
+            if (err) {
+                callback(err);
+            } else {
+                // console.log("--------------------------", result)
+                return callback(null, result);
+            }
         }
-    })
-}
+    );
+};
+
 farmer_model.prototype.getFarmerList = (data, callback) => {
     farmer.find({}, (err, result) => {
         if (err) {
-            callback(err)
+            callback(err);
         } else {
-            return callback(null, result)
+            return callback(null, result);
         }
-    })
-}
+    });
+};
 
+farmer_model.prototype.findOne = (data, callback) => {
+    farmer.findOne({ username: data.username }, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    });
+};
 // farmer_model.prototype.find = (data, callback) => {
 //     farmer.findOne({ "username": data.username }, (err, result) => {
 //         if (err) {
@@ -114,7 +147,6 @@ farmer_model.prototype.getFarmerList = (data, callback) => {
 //             if (result.password == data.password)
 //                 return callback(null, result);
 
-
 //             else {
 //                 callback("password does not match")
 //             }
@@ -122,5 +154,4 @@ farmer_model.prototype.getFarmerList = (data, callback) => {
 //     })
 // }
 
-
-module.exports = new farmer_model;
+module.exports = new farmer_model();
