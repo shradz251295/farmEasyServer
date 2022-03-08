@@ -14,7 +14,6 @@ router.post('/farmer/editProfile', farmer_controller.editProfile);
 router.post('/farmer/changePassword', farmer_controller.changePassword);
 router.get('/farmer/getFarmerList', farmer_controller.getFarmerList);
 router.post('/farmer/sellProduct', farmer_controller.sellProduct);
-router.get('/farmer/getProductList', farmer_controller.getProductList);
 
 
 /**
@@ -27,6 +26,7 @@ router.get('/admin/getAdminList', admin_controller.getAdminList);
 router.post('/admin/addState', admin_controller.addState);
 router.post('/admin/addCity', admin_controller.addCity);
 router.post('/admin/uploadKits', admin_controller.uploadKit);
-router.post('/admin/addFarmerKit', upload.single('image'), admin_controller.addFarmerKit)
+router.post('/admin/addFarmerKit', upload.single('image'), admin_controller.addFarmerKit);
+router.get('/farmer/getProductList', admin_controller.getProductList);
 
 module.exports = router;

@@ -97,7 +97,6 @@ farmer_model.prototype.saveEditedProfile = (data, callback) => {
                     if (err) {
                         callback(err);
                     } else {
-                        console.log(result);
                         return callback(null, result);
                     }
                 });
@@ -107,7 +106,6 @@ farmer_model.prototype.saveEditedProfile = (data, callback) => {
 };
 
 farmer_model.prototype.saveUserAfterResetPass = (data, callback) => {
-    console.log("data", data)
     farmer.findOneAndUpdate({ username: data.username }, { $set: { password: data.password } },
         (err, result) => {
             if (err) {

@@ -31,7 +31,6 @@ var farmer = mongoose.model("farmerProduceData", FarmerSchema);
 function farmer_model() {}
 
 farmer_model.prototype.sellProduct = (data, callback) => {
-    console.log(data)
     const farmer_data = new farmer(data);
     farmer_data.save((err, result) => {
         if (err) {

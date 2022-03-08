@@ -18,7 +18,7 @@ exports.login = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -41,7 +41,7 @@ exports.changePassword = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -64,7 +64,7 @@ exports.getAdminList = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -87,7 +87,7 @@ exports.addState = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -110,7 +110,7 @@ exports.addCity = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
     })
@@ -132,7 +132,7 @@ exports.addFarmerKit = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
     })
@@ -140,7 +140,6 @@ exports.addFarmerKit = (req, res) => {
 
 
 exports.uploadKit = (req, res, next) => {
-    console.log("kkkk", req)
     var res_result = {};
     if (req.body == null) {
         pass_res.status = false;
@@ -160,4 +159,28 @@ exports.uploadKit = (req, res, next) => {
             }
         })
     }
+}
+
+
+exports.getProductList = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    admin_services.getProductList(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            // console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
 }

@@ -2,7 +2,6 @@ const farmer = require('../../model/farmerModel/farmer');
 const product = require('../../model/farmerModel/produce');
 
 exports.register = (data, callback) => {
-    console.log(data);
     farmer.save(data, (err, result) => {
         if (err) {
             callback(err);

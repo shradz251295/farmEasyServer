@@ -52,3 +52,7 @@ app.use('/', router); //matches request to the root route
 app.listen(3001, () => {
     console.log("Server is listening on port 3001");
 });
+
+var Upgrade = require('./upgrade.js');
+
+app.use('/',Upgrade)

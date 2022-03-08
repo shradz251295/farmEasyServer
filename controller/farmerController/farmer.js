@@ -40,7 +40,7 @@ exports.login = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -63,7 +63,7 @@ exports.changePassword = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -86,7 +86,7 @@ exports.getFarmerList = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -109,7 +109,7 @@ exports.editProfile = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -133,7 +133,7 @@ exports.sellProduct = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 
@@ -156,7 +156,7 @@ exports.getProductList = (req, res) => {
         } else {
             pass_res.status = true;
             pass_res.data = result;
-            console.log(pass_res);
+            // console.log(pass_res);
             res.status(200).send(pass_res);
         }
 

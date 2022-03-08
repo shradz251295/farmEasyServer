@@ -52,13 +52,10 @@ user_model.prototype.find = (data, callback) => {
 }
 
 user_model.prototype.saveUserAfterResetPass = (data, callback) => {
-    console.log("savePassword", data);
     user.findOneAndUpdate({ username: data.username }, { $set: { password: data.password } }, (err, result) => {
         if (err) {
             callback(err);
         } else {
-            console.log("success", result);
-
             return callback(null, result);
         }
     })

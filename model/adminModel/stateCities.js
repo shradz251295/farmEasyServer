@@ -32,7 +32,6 @@ function admin_model() {
 }
 
 admin_model.prototype.addState = (data, callback) => {
-    console.log(data)
     admin.findOne({ "username": data.username }, (err, result) => {
         //     console.log(result)
         //     if (err) {

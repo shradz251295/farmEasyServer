@@ -72,3 +72,13 @@ exports.uploadKit = (data, callback) => {
         }
     })
 }
+
+exports.getProductList = (data, callback) => {
+    admin_farmer_setting.getProductList(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
