@@ -2,13 +2,13 @@ const router = require("express").Router();
 
 const Razorpay = require("razorpay");
 const transaction = require("./model/farmerModel/transaction");
-const tran_service = require("./services/farmer/farmer_user")
+const tran_service = require("./services/customerService/customer_user")
 const keyid = "rzp_test_y3IVf712MU2JMh";
 const keysecret = "7yoaB3Qdv70bC85gPcsfejMJ";
 
 const crypto = require("crypto");
 
-router.route("/placeOrder").post(function(req, res) {
+router.route("/custplaceOrder").post(function(req, res) {
     var instance = new Razorpay({
         key_id: keyid,
         key_secret: keysecret,
@@ -28,7 +28,7 @@ router.route("/placeOrder").post(function(req, res) {
     });
 });
 
-router.route("/payment").post(function(req, res) {
+router.route("/custpayment").post(function(req, res) {
     var pass_res = {};
 
     const generated_signature = crypto.createHmac("sha256", keysecret);
@@ -45,7 +45,7 @@ router.route("/payment").post(function(req, res) {
             orderDate: new Date().toString()
         }
 
-        tran_service.addFarmerKitList(data, (err, result) => {
+        tran_service.addProduct(data, (err, result) => {
             if (err) {
                 pass_res.status = false;
                 pass_res.message = err;

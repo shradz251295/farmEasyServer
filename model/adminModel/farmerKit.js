@@ -1,12 +1,12 @@
 const mongoose = require('mongoose'); //ODM(object document Mapper) framework for MongoDB
 
 var AdminSchema = new mongoose.Schema({
-    // username: {
-    //     type: String,
-    //     required: true,
-    //     lowercase: true,
-    //     // unique: true
-    // },
+    username: {
+        type: String,
+        required: true,
+        lowercase: true,
+        // unique: true
+    },
     produceCategory: {
         type: String,
         required: true
@@ -16,6 +16,18 @@ var AdminSchema = new mongoose.Schema({
         // required: true
     },
     image: {
+        type: String,
+        required: true
+    },
+    productDescription: {
+        type: String,
+        required: true
+    },
+    quantityType: {
+        type: String,
+        required: true
+    },
+    cost: {
         type: String,
         required: true
     },

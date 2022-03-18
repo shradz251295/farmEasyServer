@@ -21,7 +21,7 @@ let Transactions = new Schema({
         type: String,
     }
 });
-var transaction = mongoose.model("Transaction", Transactions);
+var transaction = mongoose.model("CustomerTransaction", Transactions);
 
 
 // module.exports = transaction;
@@ -39,7 +39,7 @@ transaction_model.prototype.save = (data, callback) => {
     });
 };
 
-transaction_model.prototype.getFarmerKitList = (data, callback) => {
+transaction_model.prototype.getOrderList = (data, callback) => {
     transaction.find({}, (err, result) => {
         if (err) {
             callback(err);

@@ -47,6 +47,28 @@ exports.changePassword = (req, res) => {
 
     })
 }
+exports.editProfile = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    admin_services.editProfile(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            // console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
+}
 
 exports.getAdminList = (req, res) => {
     var pass_res = {};
@@ -94,6 +116,31 @@ exports.addState = (req, res) => {
     })
 }
 
+
+exports.getState = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    admin_services.getState(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            // console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
+}
+
+
 exports.addCity = (req, res) => {
     var pass_res = {};
     if (req.body == null) {
@@ -113,6 +160,52 @@ exports.addCity = (req, res) => {
             // console.log(pass_res);
             res.status(200).send(pass_res);
         }
+    })
+}
+
+exports.getCity = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    admin_services.getCity(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            // console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
+    })
+}
+
+exports.deleteState = (req, res) => {
+    var pass_res = {};
+    if (req.body == null) {
+        pass_res.status = false;
+        pass_res.message = 'field is empty';
+        res.status(404).send(pass_res);
+    }
+
+    admin_services.deleteState(req.body, (err, result) => {
+        if (err) {
+            pass_res.status = false;
+            pass_res.message = err;
+            res.status(400).send(pass_res);
+        } else {
+            pass_res.status = true;
+            pass_res.data = result;
+            // console.log(pass_res);
+            res.status(200).send(pass_res);
+        }
+
     })
 }
 

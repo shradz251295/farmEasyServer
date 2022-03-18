@@ -54,5 +54,7 @@ app.listen(3001, () => {
 });
 
 var Upgrade = require('./upgrade.js');
+app.use('/', Upgrade)
 
-app.use('/',Upgrade)
+var custUpgrade = require('./custUpgrade.js');
+app.use('/', custUpgrade)

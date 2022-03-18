@@ -1,4 +1,4 @@
-const farmer_services = require('../../services/farmer/farmer_user');
+const customer_service = require('../../services/customerService/customer_user');
 const fs = require('fs')
 
 exports.register = (req, res) => {
@@ -10,7 +10,7 @@ exports.register = (req, res) => {
         res.status(404).send(res_result);
     }
 
-    farmer_services.register(req.body, (err, result) => {
+    customer_service.register(req.body, (err, result) => {
         if (err) {
             res_result.status = false;
             res_result.message = err;
@@ -33,7 +33,7 @@ exports.login = (req, res) => {
         res.status(404).send(pass_res);
     }
 
-    farmer_services.login(req.body, (err, result) => {
+    customer_service.login(req.body, (err, result) => {
         if (err) {
             pass_res.status = false;
             pass_res.message = err;
@@ -56,30 +56,7 @@ exports.changePassword = (req, res) => {
         res.status(404).send(pass_res);
     }
 
-    farmer_services.changePassword(req.body, (err, result) => {
-        if (err) {
-            pass_res.status = false;
-            pass_res.message = err;
-            res.status(400).send(pass_res);
-        } else {
-            pass_res.status = true;
-            pass_res.data = result;
-            // console.log(pass_res);
-            res.status(200).send(pass_res);
-        }
-
-    })
-}
-
-exports.getFarmerList = (req, res) => {
-    var pass_res = {};
-    if (req.body == null) {
-        pass_res.status = false;
-        pass_res.message = 'field is empty';
-        res.status(404).send(pass_res);
-    }
-
-    farmer_services.getFarmerList(req.body, (err, result) => {
+    customer_service.changePassword(req.body, (err, result) => {
         if (err) {
             pass_res.status = false;
             pass_res.message = err;
@@ -102,7 +79,7 @@ exports.editProfile = (req, res) => {
         res.status(404).send(pass_res);
     }
 
-    farmer_services.editProfile(req.body, (err, result) => {
+    customer_service.editProfile(req.body, (err, result) => {
         if (err) {
             pass_res.status = false;
             pass_res.message = err;
@@ -114,29 +91,6 @@ exports.editProfile = (req, res) => {
             res.status(200).send(pass_res);
         }
 
-    })
-}
-
-
-exports.sellProduct = (req, res) => {
-    var pass_res = {};
-    if (req.body == null) {
-        pass_res.status = false;
-        pass_res.message = 'field is empty';
-        res.status(404).send(pass_res);
-    }
-    let imageString = new Buffer(fs.readFileSync(req.file.path)).toString("base64")
-    farmer_services.sellProduct(req.body, imageString, (err, result) => {
-        if (err) {
-            pass_res.status = false;
-            pass_res.message = err;
-            res.status(400).send(pass_res);
-        } else {
-            pass_res.status = true;
-            pass_res.data = result;
-            // console.log(pass_res);
-            res.status(200).send(pass_res);
-        }
     })
 }
 
@@ -148,30 +102,7 @@ exports.getProductList = (req, res) => {
         res.status(404).send(pass_res);
     }
 
-    farmer_services.getProductList(req.body, (err, result) => {
-        if (err) {
-            pass_res.status = false;
-            pass_res.message = err;
-            res.status(400).send(pass_res);
-        } else {
-            pass_res.status = true;
-            pass_res.data = result;
-            // console.log(pass_res);
-            res.status(200).send(pass_res);
-        }
-
-    })
-}
-
-exports.getFarmerKitList = (req, res) => {
-    var pass_res = {};
-    if (req.body == null) {
-        pass_res.status = false;
-        pass_res.message = 'field is empty';
-        res.status(404).send(pass_res);
-    }
-
-    farmer_services.getFarmerKitList(req.body, (err, result) => {
+    customer_service.getProductList(req.body, (err, result) => {
         if (err) {
             pass_res.status = false;
             pass_res.message = err;
@@ -187,7 +118,7 @@ exports.getFarmerKitList = (req, res) => {
 }
 
 
-exports.deleteProduce = (req, res) => {
+exports.getCustomerList = (req, res) => {
     var pass_res = {};
     if (req.body == null) {
         pass_res.status = false;
@@ -195,7 +126,7 @@ exports.deleteProduce = (req, res) => {
         res.status(404).send(pass_res);
     }
 
-    farmer_services.deleteProduce(req.body, (err, result) => {
+    customer_service.getCustomerList(req.body, (err, result) => {
         if (err) {
             pass_res.status = false;
             pass_res.message = err;

@@ -4,25 +4,35 @@ var FarmerSchema = new mongoose.Schema({
         type: String,
         required: true,
         lowercase: true,
-        unique: true,
+        // unique: true
     },
-    category: {
+    produceCategory: {
         type: String,
-        required: true,
+        required: true
     },
-    name: {
+    produceName: {
         type: String,
-        required: true,
+        // required: true
     },
-    quantity: {
+    image: {
         type: String,
-        required: true,
+        required: true
     },
-    description: {
+    productDescription: {
         type: String,
+        required: true
+    },
+    quantityType: {
+        type: String,
+        required: true
+    },
+    cost: {
+        type: String,
+        required: true
     },
     status: {
         type: String,
+        required: true
     },
 });
 
@@ -30,7 +40,8 @@ var farmer = mongoose.model("farmerProduceData", FarmerSchema);
 
 function farmer_model() {}
 
-farmer_model.prototype.sellProduct = (data, callback) => {
+farmer_model.prototype.sellProduct = (data, image, callback) => {
+    data["image"] = 'data:image/jpg;base64, ' + image
     const farmer_data = new farmer(data);
     farmer_data.save((err, result) => {
         if (err) {
@@ -51,5 +62,19 @@ farmer_model.prototype.getProductList = (data, callback) => {
         }
     });
 };
+
+farmer_model.prototype.deleteProduce = (data, callback) => {
+    farmer.deleteOne({ _id: data.id }, (err, result) => {
+        if (err) {
+            callback(err)
+        } else {
+            const obj = {
+                status: 200,
+                msg: "Record is deleted successfully"
+            }
+            return callback(null, obj)
+        }
+    })
+}
 
 module.exports = new farmer_model();

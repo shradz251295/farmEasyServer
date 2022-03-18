@@ -31,7 +31,15 @@ exports.getAdminList = (data, callback) => {
         }
     })
 }
-
+exports.editProfile = (data, callback) => {
+    admin_user.editedProfile(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
 exports.addState = (data, callback) => {
     admin_general_setting.addState(data, (err, result) => {
         if (err) {
@@ -41,6 +49,27 @@ exports.addState = (data, callback) => {
         }
     })
 }
+
+exports.deleteState = (data, callback) => {
+    admin_general_setting.deleteState(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
+
+exports.getState = (data, callback) => {
+    admin_general_setting.getState(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
+
 
 exports.addCity = (data, callback) => {
     admin_general_setting.addCity(data, (err, result) => {
@@ -52,6 +81,17 @@ exports.addCity = (data, callback) => {
     })
 
 }
+
+exports.getCity = (data, callback) => {
+    admin_general_setting.getCity(data, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            return callback(null, result);
+        }
+    })
+}
+
 
 exports.addFarmerKit = (data, image, callback) => {
     admin_farmer_setting.addFarmerKit(data, image, (err, result) => {

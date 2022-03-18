@@ -60,6 +60,32 @@ user_model.prototype.saveUserAfterResetPass = (data, callback) => {
         }
     })
 }
+
+user_model.prototype.editedProfile = (data, callback) => {
+    // console.log(data)
+    user.findOneAndUpdate({ username: data.username }, {
+            $set: {
+                firstname: data.firstname,
+                lastname: data.lastname,
+                username: data.username,
+                mobile_no: data.mobile_no,
+            },
+        },
+        (err, result) => {
+            if (err) {
+                callback(err);
+            } else {
+                user.findOne({ username: data.username }, (err, result) => {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        return callback(null, result);
+                    }
+                });
+            }
+        }
+    );
+};
 user_model.prototype.getAdminList = (data, callback) => {
     user.find({}, (err, result) => {
         if (err) {
